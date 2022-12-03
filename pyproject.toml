@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "mondaysdk"
+version = "0.1.0"
+description = ""
+authors = ["Jonathan Crum <jcrum@theobogroup.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+strawberry-graphql = {extras = ["debug-server"], version = "^0.144.2"}
+rich = "^12.6.0"
+fastapi = "^0.88.0"
+pendulum = "^2.1.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

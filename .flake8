@@ -1,0 +1,17 @@
+[flake8]
+
+ignore =
+    E129,
+    E203,   # whitespace before :
+    E221,
+    E241,
+    E265,   # block comment should start with #
+    F401,   # module imported but unused
+    F403,   # 'from module import *' unused; unable to detect undefined names
+    F405,   # name may be undefined, or defined from star imports
+    F841,   # local variable 'remote' is assigned to but never used
+    W503,   # line break before binary operator
+    W504,   # line break after binary operator
+
+max-line-length =
+    120

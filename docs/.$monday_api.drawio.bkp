@@ -1,0 +1,146 @@
+<mxfile host="Electron" modified="2023-05-05T13:56:21.259Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.2.1 Chrome/112.0.5615.87 Electron/24.1.2 Safari/537.36" etag="IFUrAaUXphprM1Fg5qWW" version="21.2.1" type="device" pages="2">
+  <diagram name="Page-1" id="ErHbowz8T0tF9KOx9xvh">
+    <mxGraphModel dx="1476" dy="400" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="OP-uanLnD6wN9fvbGGnW-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Fira Code;fontSize=10;fontColor=default;entryX=0.222;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.087;exitY=1.023;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="OP-uanLnD6wN9fvbGGnW-9" target="OP-uanLnD6wN9fvbGGnW-10">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="160" y="420" as="sourcePoint" />
+            <mxPoint x="160" y="510" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OP-uanLnD6wN9fvbGGnW-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Fira Code;fontSize=10;fontColor=default;entryX=0.25;entryY=1;entryDx=0;entryDy=0;exitX=0.4;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="OP-uanLnD6wN9fvbGGnW-9" target="OP-uanLnD6wN9fvbGGnW-17">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="300" y="350" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OP-uanLnD6wN9fvbGGnW-9" value="request posted to&lt;br&gt;/monday/execute/on-button-pressed" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Fira Code;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="120" y="370" width="450" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="OP-uanLnD6wN9fvbGGnW-16" value="AuthResponse" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Fira Code;fontSize=10;fontColor=default;exitX=0.75;exitY=0;exitDx=0;exitDy=0;dashed=1;entryX=0.3;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="OP-uanLnD6wN9fvbGGnW-10" target="OP-uanLnD6wN9fvbGGnW-9">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="255" y="420" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OP-uanLnD6wN9fvbGGnW-10" value="authenticate(request)" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Fira Code;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="120" y="520" width="180" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="OP-uanLnD6wN9fvbGGnW-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Fira Code;fontSize=10;fontColor=default;" edge="1" parent="1" source="OP-uanLnD6wN9fvbGGnW-11" target="OP-uanLnD6wN9fvbGGnW-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="OP-uanLnD6wN9fvbGGnW-11" value="user presses button" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Fira Code;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="-430" y="370" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="OP-uanLnD6wN9fvbGGnW-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Fira Code;fontSize=10;fontColor=default;" edge="1" parent="1" source="OP-uanLnD6wN9fvbGGnW-12" target="OP-uanLnD6wN9fvbGGnW-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="OP-uanLnD6wN9fvbGGnW-12" value="integration recipe points to custom action that invokes server endpoint" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Fira Code;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="-160" y="360" width="190" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="OP-uanLnD6wN9fvbGGnW-21" value="AuthResponse" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Fira Code;fontSize=10;fontColor=default;exitX=0.25;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="OP-uanLnD6wN9fvbGGnW-17" target="OP-uanLnD6wN9fvbGGnW-19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="OP-uanLnD6wN9fvbGGnW-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Fira Code;fontSize=10;fontColor=default;" edge="1" parent="1" source="OP-uanLnD6wN9fvbGGnW-17">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="390" y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OP-uanLnD6wN9fvbGGnW-17" value="endpoint function passes auth to&lt;br&gt;controller.execute(request, auth, &#39;on_button_pressed&#39;)" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Fira Code;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="210" y="200" width="360" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="OP-uanLnD6wN9fvbGGnW-19" value="check_webtoken(auth)" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Fira Code;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="210" y="40" width="180" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="OIqw6ta5-Ems0p-rgSqh" name="Page-2">
+    <mxGraphModel dx="1611" dy="480" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="7qEOh4sPNsHpD3VL2-St-1" value="main" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};rounded=0;strokeColor=default;fontFamily=Fira Code;fontSize=8;fontColor=default;fillColor=default;snapToPoint=0;" vertex="1" parent="1">
+          <mxGeometry x="-240" width="100" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="7qEOh4sPNsHpD3VL2-St-3" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};rounded=0;strokeColor=default;fontFamily=Fira Code;fontSize=8;fontColor=default;fillColor=default;" vertex="1" parent="7qEOh4sPNsHpD3VL2-St-1">
+          <mxGeometry x="45" y="70" width="10" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="7qEOh4sPNsHpD3VL2-St-5" value="POST /monday/execute/on-button-pressed" style="html=1;verticalAlign=bottom;startArrow=oval;startFill=1;endArrow=block;startSize=8;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontFamily=Fira Code;fontSize=8;fontColor=default;align=left;" edge="1" parent="1" target="7qEOh4sPNsHpD3VL2-St-3">
+          <mxGeometry x="-0.84" width="60" relative="1" as="geometry">
+            <mxPoint x="-440" y="70" as="sourcePoint" />
+            <mxPoint x="-270" y="100" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7qEOh4sPNsHpD3VL2-St-6" value="authentication" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};rounded=0;strokeColor=default;fontFamily=Fira Code;fontSize=8;fontColor=default;fillColor=default;snapToPoint=0;" vertex="1" parent="1">
+          <mxGeometry x="-80" width="100" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="7qEOh4sPNsHpD3VL2-St-7" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};rounded=0;strokeColor=default;fontFamily=Fira Code;fontSize=8;fontColor=default;fillColor=default;" vertex="1" parent="7qEOh4sPNsHpD3VL2-St-6">
+          <mxGeometry x="45" y="80" width="10" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="7qEOh4sPNsHpD3VL2-St-9" value="authenticate(request)" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontFamily=Fira Code;fontSize=8;fontColor=default;align=left;" edge="1" parent="1" source="7qEOh4sPNsHpD3VL2-St-3" target="7qEOh4sPNsHpD3VL2-St-7">
+          <mxGeometry x="-0.8" width="80" relative="1" as="geometry">
+            <mxPoint x="-170" y="90" as="sourcePoint" />
+            <mxPoint x="-90" y="90" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-60" y="80" />
+              <mxPoint x="-80" y="90" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7qEOh4sPNsHpD3VL2-St-11" value="auth: AuthResponse" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;labelBackgroundColor=default;strokeColor=default;fontFamily=Fira Code;fontSize=8;fontColor=default;shape=connector;align=right;" edge="1" parent="1" source="7qEOh4sPNsHpD3VL2-St-7" target="7qEOh4sPNsHpD3VL2-St-3">
+          <mxGeometry x="-0.8" relative="1" as="geometry">
+            <mxPoint x="-80" y="100" as="sourcePoint" />
+            <mxPoint x="-150" y="100" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-60" y="110" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7qEOh4sPNsHpD3VL2-St-12" value="controller" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};rounded=0;strokeColor=default;fontFamily=Fira Code;fontSize=8;fontColor=default;fillColor=default;snapToPoint=0;" vertex="1" parent="1">
+          <mxGeometry x="70" width="100" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="7qEOh4sPNsHpD3VL2-St-13" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};rounded=0;strokeColor=default;fontFamily=Fira Code;fontSize=8;fontColor=default;fillColor=default;" vertex="1" parent="7qEOh4sPNsHpD3VL2-St-12">
+          <mxGeometry x="45" y="140" width="10" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="7qEOh4sPNsHpD3VL2-St-17" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};rounded=0;strokeColor=default;fontFamily=Fira Code;fontSize=8;fontColor=default;fillColor=default;" vertex="1" parent="7qEOh4sPNsHpD3VL2-St-12">
+          <mxGeometry x="50" y="165" width="10" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="7qEOh4sPNsHpD3VL2-St-18" value="check_webtoken(auth)" style="html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;labelBackgroundColor=default;strokeColor=default;fontFamily=Fira Code;fontSize=8;fontColor=default;shape=connector;elbow=vertical;" edge="1" target="7qEOh4sPNsHpD3VL2-St-17" parent="7qEOh4sPNsHpD3VL2-St-12">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="55" y="145" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="85" y="175" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7qEOh4sPNsHpD3VL2-St-14" value="execute(request, auth, &#39;on_button_pressed&#39;)" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;labelBackgroundColor=default;strokeColor=default;fontFamily=Fira Code;fontSize=8;fontColor=default;shape=connector;align=left;" edge="1" parent="1" source="7qEOh4sPNsHpD3VL2-St-3" target="7qEOh4sPNsHpD3VL2-St-13">
+          <mxGeometry x="-0.9" width="80" relative="1" as="geometry">
+            <mxPoint x="-100" y="140" as="sourcePoint" />
+            <mxPoint x="-20" y="140" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="60" y="140" />
+              <mxPoint x="40" y="130" />
+              <mxPoint x="40" y="140" />
+              <mxPoint x="10" y="120" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7qEOh4sPNsHpD3VL2-St-19" value="ExecResponse" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;labelBackgroundColor=default;strokeColor=default;fontFamily=Fira Code;fontSize=8;fontColor=default;shape=connector;align=right;" edge="1" parent="1" source="7qEOh4sPNsHpD3VL2-St-13" target="7qEOh4sPNsHpD3VL2-St-3">
+          <mxGeometry x="-0.9" relative="1" as="geometry">
+            <mxPoint x="90" y="210" as="sourcePoint" />
+            <mxPoint x="10" y="210" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="40" y="260" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

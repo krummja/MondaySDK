@@ -1,0 +1,11 @@
+mutation (
+    $parent_item_id: Int!,
+    $item_name: String!,
+) {
+    create_subitem(
+        parent_item_id: $parent_item_id,
+        item_name: $item_name,
+    ) {
+        id
+    }
+}

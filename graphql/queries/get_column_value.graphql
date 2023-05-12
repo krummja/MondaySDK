@@ -1,0 +1,7 @@
+query ($itemId: [Int], $columnId: [String]) {
+  items (ids: $itemId) {
+    column_values (ids: $columnId) {
+      value
+    }
+  }
+}

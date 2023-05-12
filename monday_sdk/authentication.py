@@ -11,6 +11,7 @@ import pendulum as pdl
 from starlette import status
 from jwt.exceptions import InvalidTokenError
 from pydantic import BaseModel
+from devtools import debug
 
 
 WebToken = TypedDict(
@@ -35,13 +36,12 @@ class AuthResponse(BaseModel):
 def decode(authorization: str, secret: str = '') -> WebToken:
     decoded = jwt.decode(
         authorization,
-        os.environ.get('MONDAY_SIGNING_SECRET', secret),
+        os.environ.get('SIGNING_SECRET', secret),
         algorithms=['HS256'],
         options={
             'verify_aud': False,
         },
     )
-
     return cast(WebToken, decoded)
 
 
@@ -60,10 +60,11 @@ def authenticate(req: Request) -> AuthResponse:
         )
 
         decoded = decode(authorization)
+
         if pdl.now() >= pdl.from_timestamp(decoded['exp']):
             raise InvalidTokenError("Token has expired")
 
-        return AuthResponse(
+        auth = AuthResponse(
             status=status.HTTP_200_OK,
             webtoken={
                 'accountId': decoded['accountId'],
@@ -74,6 +75,7 @@ def authenticate(req: Request) -> AuthResponse:
                 'shortLivedToken': decoded['shortLivedToken'],
             }
         )
+        return auth
 
     except InvalidTokenError as err:
         return AuthResponse(

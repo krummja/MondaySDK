@@ -25,3 +25,5 @@ scratch/
 
 *.db
 .VSCodeCounter
+
+attic/

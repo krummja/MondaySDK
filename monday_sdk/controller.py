@@ -1,26 +1,99 @@
 from __future__ import annotations
 from beartype.typing import *
 if TYPE_CHECKING:
-    from monday_sdk.action import Action
+    from fastapi import Request
+    from monday_sdk.authentication import AuthResponse
 
-from monday_sdk.client import Monday
+from functools import wraps
+
+
+ServiceResult = TypedDict(
+    "ServiceResult",
+    {
+        "success": bool,
+        "data": NotRequired[dict[str, Any]],
+    }
+)
+
+
+QueryVariables = TypedDict(
+    "QueryVariables",
+    {
+        "userId": NotRequired[str],
+        "boardId": NotRequired[str],
+        "itemId": NotRequired[str],
+        "columnId": NotRequired[str],
+    }
+)
+
+
+ServiceParams = TypedDict(
+    "ServiceParams",
+    {
+        "request": Request,
+        "token": str,
+    }
+)
+
+
+class Service(Protocol):
+
+    async def __call__(self, params: ServiceParams) -> ServiceResult:
+        ...
+
+
+class ServiceRepository:
+
+    def __init__(self, controller: Controller) -> None:
+        self._controller = controller
+        self._services: dict[str, Service] = {}
+
+    def __getitem__(self, identifier: str) -> Service:
+        return self._services[identifier]
+
+    def __setitem__(self, identifier: str, service: Service) -> None:
+        self._services[identifier] = service
 
 
 class Controller:
 
     def __init__(self) -> None:
-        self._client: Monday | None = None
-        self._actions: dict[str, Callable[..., Any]] = {}
+        self._cached_token: str | None = None
+        self._services = ServiceRepository(self)
+        self._last_result: ServiceResult = {
+            "success": False,
+            "data": {},
+        }
 
-    def bind(self, client: Monday) -> None:
-        self._client = client
+    @property
+    def last_result(self) -> ServiceResult:
+        return self._last_result
 
-    def add_action(self, action_name: str, action: type[Action]) -> None:
-        """Register an Action subclass with this Controller."""
-        self._actions[action_name] = action(self)
+    async def execute(
+        self,
+        req: Request,
+        auth: AuthResponse,
+        action: str,
+    ) -> None:
+        self._set_authentication(auth)
 
-    def __getitem__(self, action_name: str) -> Callable[..., Any]:
-        return self._actions[action_name]
+        if self._cached_token is None:
+            return
 
-    def __iter__(self) -> Iterator[str]:
-        return iter(self._actions)
+        if func := getattr(self, f"execute_{action}"):
+            params: ServiceParams = {
+                'request': req,
+                'token': self._cached_token,
+            }
+
+            service: Service = func
+            self._last_result = await service(params)
+
+        self._expire()
+
+    def _expire(self) -> None:
+        self._cached_token = None
+
+    def _set_authentication(self, authorization: AuthResponse) -> None:
+        if webtoken := authorization.webtoken:
+            self._cached_token = webtoken.get("shortLivedToken")

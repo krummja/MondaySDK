@@ -9,8 +9,6 @@ import shutil
 from threading import Timer
 from fastapi import FastAPI
 
-from monday_sdk.client import Monday
-
 
 def open_tunnel(port: int, subdomain: Optional[str] = None) -> int:
     if not shutil.which('lt'):
@@ -53,11 +51,3 @@ def with_localtunnel(
         run(app, *args, **kwargs)
 
     return tunnelled_run
-
-
-if __name__ == '__main__':
-    from uvicorn import run
-    monday = Monday()
-
-    app_run = with_localtunnel(monday.start(), run, subdomain='monday-test-sakura')
-    app_run(host='localhost', port=8000)

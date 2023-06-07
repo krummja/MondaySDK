@@ -6,20 +6,15 @@ if TYPE_CHECKING:
     from requests import Request
     from requests import Response
     from requests import Session
-    from fastapi import Request as MondayRequest
 
 import os
 
+from dotenv import load_dotenv
 from requests.auth import AuthBase
 from requests.adapters import HTTPAdapter
 from requests_toolbelt import sessions
 
-from starlette import status
-
-from devtools import debug
-from dotenv import load_dotenv
-
-from monday_sdk.authentication import authenticate, AuthResponse
+from monday_sdk.authentication import AuthResponse
 
 
 load_dotenv()
@@ -58,9 +53,8 @@ class MondayContext:
         exc_type: type[BaseException],
         exc_val: BaseException,
         exc_tb: TracebackType,
-    ) -> bool:
+    ) -> None:
         self._base_ctx.close()
-        return False
 
 
 class APIParams(TypedDict):
@@ -69,26 +63,29 @@ class APIParams(TypedDict):
 
 
 class MondayClient:
+    """Client for making requests against the monday.com API."""
 
     def __init__(self, *, client_id: str) -> None:
         self.client_id = client_id
         self._token: str = ""
 
     def set_token(self, auth: AuthResponse) -> None:
+        """Set the cached API token from an authenticated AuthResponse."""
         if credential := auth.webtoken:
             self._token = credential['shortLivedToken']
 
     def api(self, query: str, **variables: Any) -> Response | None:
+        """Execute a query or mutation against the monday.com API."""
         params: APIParams = {
             'query'       : query,
             'variables'   : variables,
         }
 
         if self._token:
-            result = self.execute(params, self._token)
+            result = self._execute(params, self._token)
             return result
 
-    def execute(
+    def _execute(
         self,
         data: APIParams,
         token: str,

@@ -11,7 +11,6 @@ import pendulum as pdl
 from starlette import status
 from jwt.exceptions import InvalidTokenError
 from pydantic import BaseModel
-from devtools import debug
 
 
 WebToken = TypedDict(
@@ -54,17 +53,18 @@ def authenticate(req: Request) -> AuthResponse:
     the response will contain an error message with HTTP status 401.
     """
     try:
+
         authorization = req.headers.get(
             'Authorization',
             req.query_params.get('token', '') if req.query_params else '',
         )
 
-        decoded = decode(authorization)
+        decoded = decode(cast(str, authorization))
 
         if pdl.now() >= pdl.from_timestamp(decoded['exp']):
             raise InvalidTokenError("Token has expired")
 
-        auth = AuthResponse(
+        return AuthResponse(
             status=status.HTTP_200_OK,
             webtoken={
                 'accountId': decoded['accountId'],
@@ -75,7 +75,6 @@ def authenticate(req: Request) -> AuthResponse:
                 'shortLivedToken': decoded['shortLivedToken'],
             }
         )
-        return auth
 
     except InvalidTokenError as err:
         return AuthResponse(

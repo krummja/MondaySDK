@@ -1,8 +1,5 @@
 from __future__ import annotations
-from typing import *
-if TYPE_CHECKING:
-    from asgiref.typing import ASGIApplication
-
+from typing import Callable
 import os
 import re
 import shutil
@@ -10,7 +7,7 @@ from threading import Timer
 from fastapi import FastAPI
 
 
-def open_tunnel(port: int, subdomain: Optional[str] = None) -> int:
+def open_tunnel(port: int, subdomain: str | None = None) -> int:
     if not shutil.which('lt'):
         print("Getting localtunnel from Node...")
         os.system('npm install -g localtunnel')
@@ -31,7 +28,7 @@ def open_tunnel(port: int, subdomain: Optional[str] = None) -> int:
     return output
 
 
-def start_localtunnel(port: int, subdomain: Optional[str] = None) -> None:
+def start_localtunnel(port: int, subdomain: str | None = None) -> None:
     address = open_tunnel(port, subdomain)
     print(address)
 

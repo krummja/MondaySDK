@@ -1,5 +1,4 @@
 from __future__ import annotations
-from beartype.typing import *
 
 import os
 from pathlib import Path

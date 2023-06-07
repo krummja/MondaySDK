@@ -1,5 +1,5 @@
 from __future__ import annotations
-from beartype.typing import *
+from typing import TYPE_CHECKING, TypedDict, Any
 from types import TracebackType
 
 if TYPE_CHECKING:

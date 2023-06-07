@@ -1,5 +1,5 @@
 from __future__ import annotations
-from beartype.typing import *
+from typing import TYPE_CHECKING, TypedDict, cast
 if TYPE_CHECKING:
     from fastapi import Request
 

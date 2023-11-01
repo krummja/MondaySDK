@@ -1,4 +1,5 @@
 venv/
+.venv/
 env/
 
 *.pyc
@@ -30,4 +31,3 @@ attic/
 
 graphql/
 docs/
-demos/

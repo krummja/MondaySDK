@@ -1,14 +1,32 @@
 [tool.poetry]
-name = "mondaysdk"
-version = "0.1.0"
+name = "monday_sdk"
+version = "1.0.10"
 description = ""
 authors = ["Jonathan Crum <jcrum@theobogroup.com>"]
 readme = "README.md"
+repository = "https://github.com/krummja/MondaySDK.git"
+classifiers = [
+    'License :: OSI Approved :: MIT License',
+    'Programming Language :: Python',
+    'Programming Language :: Python :: 3.11',
+    'Operating System :: OS Independent',
+    'Programming Language :: Python :: Implementation :: CPython'
+]
+include = [
+    "README.md",
+    "LICENSE.txt"
+]
 
 [tool.poetry.dependencies]
-python = "^3.11"
-fastapi = "^0.88.0"
+python = "^3.9"
 pendulum = "^2.1.2"
+requests = "^2.31.0"
+devtools = "^0.12.2"
+python-dotenv = "^1.0.0"
+requests-toolbelt = "^1.0.0"
+pyjwt = "^2.8.0"
+starlette = "^0.31.1"
+pydantic = "^2.4.2"
 
 [build-system]
 requires = ["poetry-core"]

@@ -81,7 +81,7 @@ START_DATE = "date4"
 END_DATE = "date1"
 
 
-async def get_input_fields(request: Request, field_model: type[T]) -> T | None:
+async def get_input_fields(request: Request, field_model: type[T]) -> Optional[T]:
     if data := await request.json():
         if payload := data.get('payload'):
             return cast(field_model, payload['inputFields'])

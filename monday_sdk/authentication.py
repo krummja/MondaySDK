@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import TYPE_CHECKING, TypedDict, cast
+from typing import TYPE_CHECKING, cast, Optional
 if TYPE_CHECKING:
     from fastapi import Request
 
@@ -7,6 +7,8 @@ import os
 import jwt
 import json
 import pendulum as pdl
+
+from typing_extensions import TypedDict
 
 from starlette import status
 from jwt.exceptions import InvalidTokenError
@@ -35,8 +37,8 @@ class AuthResponse(BaseModel):
     accessible via the `data` attribute.
     """
     status: int
-    data: str | None = None
-    webtoken: WebToken | None = None
+    data: Optional[str] = None
+    webtoken: Optional[WebToken] = None
 
 
 def _decode(authorization: str, secret: str = "") -> WebToken:

@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import Callable
+from typing import Callable, Optional
 import os
 import re
 import shutil
@@ -7,7 +7,7 @@ from threading import Timer
 from fastapi import FastAPI
 
 
-def open_tunnel(port: int, subdomain: str | None = None) -> int:
+def open_tunnel(port: int, subdomain: Optional[str] = None) -> int:
     if not shutil.which('lt'):
         print("Getting localtunnel from Node...")
         os.system('npm install -g localtunnel')
@@ -28,7 +28,7 @@ def open_tunnel(port: int, subdomain: str | None = None) -> int:
     return output
 
 
-def start_localtunnel(port: int, subdomain: str | None = None) -> None:
+def start_localtunnel(port: int, subdomain: Optional[str] = None) -> None:
     address = open_tunnel(port, subdomain)
     print(address)
 
@@ -36,7 +36,7 @@ def start_localtunnel(port: int, subdomain: str | None = None) -> None:
 def with_localtunnel(
     app: FastAPI,
     run: Callable[..., None],
-    subdomain: str | None = None
+    subdomain: Optional[str] = None
 ) -> Callable[..., None]:
 
     def tunnelled_run(*args, **kwargs) -> None:

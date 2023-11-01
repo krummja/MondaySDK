@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import TYPE_CHECKING, TypedDict, TypeAlias, Any, Literal
+from typing import TYPE_CHECKING, TypedDict, Any, Literal, Optional
 from types import TracebackType
 
 if TYPE_CHECKING:
@@ -9,6 +9,7 @@ if TYPE_CHECKING:
 
 import os
 
+from devtools import debug
 from dotenv import load_dotenv
 from requests.auth import AuthBase
 from requests.adapters import HTTPAdapter
@@ -22,27 +23,29 @@ load_dotenv()
 
 HTTP_PROTOCOL = os.environ.get("HTTP_PROTOCOL", "https")
 MONDAY_DOMAIN = os.environ.get("MONDAY_DOMAIN", "monday.com")
-MONDAY_API_VERSION = os.environ.get("MONDAY_API_VERSION", "2")
-MONDAY_API_URL = f"{HTTP_PROTOCOL}://api.{MONDAY_DOMAIN}/v{MONDAY_API_VERSION}"
+MONDAY_API_VERSION = os.environ.get("MONDAY_API_VERSION", "2023-10")
+MONDAY_API_URL = f"{HTTP_PROTOCOL}://api.{MONDAY_DOMAIN}/v2"
 
 
 class MondayAuth(AuthBase):
 
-    def __init__(self, access_token: str) -> None:
-        self.token = access_token
+    def __init__(self, *, token: str) -> None:
+        self.token = token
 
     def __call__(self, request: Request) -> Request:
         request.headers["Content-Type"] = "application/json"
         request.headers["Authorization"] = self.token
+        request.headers["API-Version"] = MONDAY_API_VERSION
         return request
 
 
 class MondayContext:
 
-    def __init__(self, token: str) -> None:
+    def __init__(self, token: str, suppress: bool = False) -> None:
+        self._suppress = suppress
         self._base = MONDAY_API_URL
         self._base_ctx = sessions.BaseUrlSession(base_url=self._base)
-        self._base_ctx.auth = MondayAuth(token)
+        self._base_ctx.auth = MondayAuth(token=token)
         self._base_ctx.mount(prefix=self._base, adapter=HTTPAdapter())
 
     def __enter__(self) -> Session:
@@ -51,18 +54,22 @@ class MondayContext:
     def __exit__(
         self,
         exc_type: type[BaseException],
-        exc_val: BaseException,
+        exc_value: BaseException,
         exc_tb: TracebackType,
-    ) -> None:
+    ) -> bool:
         self._base_ctx.close()
+
+        if exc_type is not None:
+            info = (exc_type, exc_value, exc_tb)
+            debug(info)
+
+            return self._suppress
+        return False
 
 
 class APIParams(TypedDict):
     query: str
     variables: dict[str, Any]
-
-
-QueryVars: TypeAlias = dict[str, Any]
 
 
 class APIOptions(TypedDict):
@@ -81,9 +88,13 @@ API_DEFAULTS: APIOptions = {
 class MondayClient:
     """Client for making requests against the monday.com API."""
 
-    def __init__(self, *, client_id: str) -> None:
-        self.client_id = client_id
-        self._token: str = ""
+    @property
+    def client_id(self) -> str:
+        return self._client_id
+
+    def __init__(self, *, client_id: str = "", token: str = "") -> None:
+        self._client_id = client_id
+        self._token = token
 
     def set_token(self, auth: AuthResponse) -> None:
         """Set the cached API token from an authenticated AuthResponse."""
@@ -93,9 +104,9 @@ class MondayClient:
     def api(
         self,
         query: str,
-        options: APIOptions | None = None,
-        **variables: QueryVars,
-    ) -> Response | None:
+        options: Optional[APIOptions] = None,
+        **variables: dict[str, Any],
+    ) -> Optional[Response]:
         """
         Execute a query or mutation against the monday.com API.
 
@@ -125,7 +136,7 @@ class MondayClient:
         data: APIParams,
         token: str,
         options: APIOptions,
-    ) -> Response | None:
+    ) -> Optional[Response]:
         url = options.get("url", MONDAY_API_URL)
         path = options.get("path", "")
         method = options.get("method", "POST")

@@ -66,7 +66,7 @@ class OverviewStatus(IntEnum):
     NOT_STARTED = 5
 
 
-async def get_input_fields(request: Request) -> InputFields | None:
+async def get_input_fields(request: Request) -> Optional[InputFields]:
     if data := await request.json():
         if payload := data.get('payload'):
             return cast(InputFields, payload['inputFields'])

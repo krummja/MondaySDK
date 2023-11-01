@@ -8,8 +8,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-QUERIES = os.environ["QUERY_PATH"]
-MUTATIONS = os.environ["MUTATION_PATH"]
+QUERIES = os.environ.get("QUERY_PATH", "")
+MUTATIONS = os.environ.get("MUTATION_PATH", "")
 
 
 def load_query(query_name: str) -> str:
